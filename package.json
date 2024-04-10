@@ -1,0 +1,16 @@
+{
+    "name": "generator-basic-react-app",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "yeoman-generator": "^7.1.1",
+        "yeoman-test": "^8.2.0",
+        "yo": "^5.0.0"
+    }
+}

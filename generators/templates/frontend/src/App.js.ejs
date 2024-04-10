@@ -1,0 +1,30 @@
+import Home from "./components/Home/Home";
+import Features from "./components/Home/Features";
+import Blog from "./components/Home/Blog";
+import Pricing from "./components/Home/Pricing";
+import About from "./components/Home/About";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Navbar from "./components/Shared/Navbar";
+
+function App() {
+
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/pricing" element={<Pricing />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;

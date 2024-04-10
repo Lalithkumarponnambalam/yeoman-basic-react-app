@@ -1,0 +1,53 @@
+import React from 'react';
+
+const Pricing = () => {
+  return (
+    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+      <div className="max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="px-6 py-8">
+          <h2 className="text-3xl font-semibold text-gray-800 mb-2">Pricing</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="bg-gray-200 rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Basic</h3>
+              <p className="text-gray-600 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p className="text-gray-600 mb-2">Features:</p>
+              <ul className="list-disc list-inside text-gray-600 mb-4">
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
+              </ul>
+              <p className="text-gray-800 text-xl">$9.99</p>
+            </div>
+            <div className="bg-gray-200 rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Standard</h3>
+              <p className="text-gray-600 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p className="text-gray-600 mb-2">Features:</p>
+              <ul className="list-disc list-inside text-gray-600 mb-4">
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
+                <li>Feature 4</li>
+              </ul>
+              <p className="text-gray-800 text-xl">$19.99</p>
+            </div>
+            <div className="bg-gray-200 rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Premium</h3>
+              <p className="text-gray-600 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p className="text-gray-600 mb-2">Features:</p>
+              <ul className="list-disc list-inside text-gray-600 mb-4">
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
+                <li>Feature 4</li>
+                <li>Feature 5</li>
+              </ul>
+              <p className="text-gray-800 text-xl">$29.99</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Pricing;

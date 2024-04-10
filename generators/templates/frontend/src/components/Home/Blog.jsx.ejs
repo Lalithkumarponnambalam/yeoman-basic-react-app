@@ -1,0 +1,48 @@
+import React from "react";
+
+const BlogPage = () => {
+  // Sample blog post data
+  const blogPosts = [
+    {
+      id: 1,
+      title: "Lorem Ipsum Dolor Sit Amet",
+      author: "John Doe",
+      date: "April 10, 2024",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ipsum sit amet tortor porta congue nec at justo. Nam commodo efficitur urna, ac varius metus condimentum at. Phasellus vel ex at enim ultrices pretium. Suspendisse et dolor at lectus convallis fermentum. Nulla facilisi. Donec vel libero nec velit dapibus varius. Integer ut condimentum dolor. Cras nec justo sit amet sem viverra scelerisque.",
+    },
+    {
+      id: 2,
+      title: "Amet Consectetur Adipiscing Elit",
+      author: "Jane Smith",
+      date: "April 11, 2024",
+      content:
+        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam blandit orci id vestibulum pharetra. Proin congue, libero id fermentum suscipit, nibh ligula egestas metus, ut scelerisque nisl nunc a magna. Ut et turpis et ligula vehicula suscipit nec a sapien. Nam tristique, lacus id consequat aliquam, tortor magna condimentum felis, non semper neque turpis vel nisi.",
+    },
+    // Add more blog post data as needed
+  ];
+
+  return (
+    <div className="bg-gray-100 min-h-screen">
+      <div className="max-w-4xl mx-auto py-8">
+        <h1 className="text-3xl font-semibold text-gray-800 mb-8">Blog</h1>
+        {blogPosts.map((post) => (
+          <div key={post.id} className="mb-8">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              {post.title}
+            </h2>
+            <p className="text-gray-600 text-sm mb-2">
+              Posted by {post.author} on {post.date}
+            </p>
+            <p className="text-gray-700 mb-4">{post.content}</p>
+            <a href="#" className="text-blue-500 hover:underline">
+              Read more
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default BlogPage;
