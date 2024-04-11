@@ -37,6 +37,15 @@ export default class BasicAppGenerator extends Generator {
         default: this.reactVersion,
         store: true,
       },
+      {
+        type: "list",
+        name: "reactTemplate",
+        message: "Select the react template you want to use:",
+        choices: [
+          "JSX",
+          "TSX"
+        ],
+      }
     ]);
   }
 
@@ -49,50 +58,64 @@ export default class BasicAppGenerator extends Generator {
 
   _writingReactTemplate() {
     console.log("Copying React template...");
+    const extension = this.answers.reactTemplate === "JSX" ? "jsx" : "tsx";
+
+    // core files means app, index, app.test kind of files
+    const coreFilesExtension = this.answers.reactTemplate === "JSX" ? "js" : "tsx";
+    const envExtension = this.answers.reactTemplate === "JSX" ? "js" : "ts"
+  
     const templatePaths = [
       "../../templates/frontend/public/index.html.ejs",
       "../../templates/frontend/public/favicon.ico.ejs",
-      "../../templates/frontend/src/components/Home/Home.jsx.ejs",
-      "../../templates/frontend/src/components/Home/About.jsx.ejs",
-      "../../templates/frontend/src/components/Home/Features.jsx.ejs",
-      "../../templates/frontend/src/components/Home/Pricing.jsx.ejs",
-      "../../templates/frontend/src/components/Home/Blog.jsx.ejs",
-      "../../templates/frontend/src/components/Shared/Navbar.jsx.ejs",
-      "../../templates/frontend/src/App.js.ejs",
-      "../../templates/frontend/src/App.test.js.ejs",
+      `../../templates/frontend/src/components/Home/Home.ejs`,
+      `../../templates/frontend/src/components/Home/About.ejs`,
+      `../../templates/frontend/src/components/Home/Features.ejs`,
+      `../../templates/frontend/src/components/Home/Pricing.ejs`,
+      `../../templates/frontend/src/components/Home/Blog.ejs`,
+      `../../templates/frontend/src/components/Shared/Navbar.ejs`,
+      `../../templates/frontend/src/App.ejs`,
+      `../../templates/frontend/src/App.test.ejs`,
       "../../templates/frontend/src/index.css.ejs",
-      "../../templates/frontend/src/index.js.ejs",
-      "../../templates/frontend/src/reportWebVitals.js.ejs",
-      "../../templates/frontend/src/setupTests.js.ejs",
+      `../../templates/frontend/src/index.ejs`,
+      `../../templates/frontend/src/reportWebVitals.ejs`,
+      `../../templates/frontend/src/setupTests.ejs`,
       "../../templates/frontend/src/styles.css.ejs",
       "../../templates/frontend/.gitignore.ejs",
       "../../templates/frontend/package.json.ejs",
-      "../../templates/frontend/Readme.md.ejs",
+      "../../templates/frontend/README.md.ejs",
       "../../templates/frontend/tailwind.config.js.ejs",
     ];
-
+  
     const destinationPaths = [
       this.answers.name + "/public/index.html",
       this.answers.name + "/public/favicon.ico",
-      this.answers.name + "/src/components/Home/Home.jsx",
-      this.answers.name + "/src/components/Home/About.jsx",
-      this.answers.name + "/src/components/Home/Features.jsx",
-      this.answers.name + "/src/components/Home/Pricing.jsx",
-      this.answers.name + "/src/components/Home/Blog.jsx",
-      this.answers.name + "/src/components/Shared/Navbar.jsx",
-      this.answers.name + "/src/App.js",
-      this.answers.name + "/src/App.test.js",
+      `${this.answers.name}/src/components/Home/Home.${extension}`,
+      `${this.answers.name}/src/components/Home/About.${extension}`,
+      `${this.answers.name}/src/components/Home/Features.${extension}`,
+      `${this.answers.name}/src/components/Home/Pricing.${extension}`,
+      `${this.answers.name}/src/components/Home/Blog.${extension}`,
+      this.answers.name + `/src/components/Shared/Navbar.${extension}`,
+      this.answers.name + `/src/App.${coreFilesExtension}`,
+      this.answers.name + `/src/App.test.${coreFilesExtension}`,
       this.answers.name + "/src/index.css",
-      this.answers.name + "/src/index.js",
-      this.answers.name + "/src/reportWebVitals.js",
-      this.answers.name + "/src/setupTests.js",
+      this.answers.name + `/src/index.${coreFilesExtension}`,
+      this.answers.name + `/src/reportWebVitals.${envExtension}`,
+      this.answers.name + `/src/setupTests.${envExtension}`,
       this.answers.name + "/src/styles.css",
       this.answers.name + "/.gitignore",
       this.answers.name + "/package.json",
-      this.answers.name + "/Readme.md",
+      this.answers.name + "/README.md",
       this.answers.name + "/tailwind.config.js",
     ];
 
+    if (this.answers.reactTemplate === "TSX") {
+      templatePaths.push("../../templates/frontend/tsconfig.json.ejs");
+      destinationPaths.push(`${this.answers.name}/tsconfig.json`);
+      templatePaths.push("../../templates/frontend/react-app-env.d.ts.ejs");
+      destinationPaths.push(`${this.answers.name}/react-app-env.d.ts`);
+    }
+  
+  
     templatePaths.forEach((templatePath, index) => {
       this.fs.copyTpl(
         this.templatePath(templatePath),
@@ -102,7 +125,7 @@ export default class BasicAppGenerator extends Generator {
           name: this.nameConversion(this.answers.name),
           reactVersion: this.answers.reactVersion,
           reactDomVersion: this.answers.reactVersion,
-          stylingFramework: this.answers.stylingFramework,
+          reactTemplate: this.answers.reactTemplate,
         }
       );
     });
